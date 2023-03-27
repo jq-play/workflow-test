@@ -5,6 +5,10 @@ on: push
 env:
     DEVOPS_DIR: devops
 
+permissions:
+  actions: read|write
+  checks: read|write
+
 jobs:
     create-docs:
         name: Create Docs
