@@ -24,5 +24,6 @@ jobs:
                   path: ${{ env.DEVOPS_DIR }}
 
             - name: Make Docs
+              uses: actions/checkout@v3
               run: python ${{ env.DEVOPS_DIR }}/script.py ./lib/test.html ./lib/test.md
               shell: sh
