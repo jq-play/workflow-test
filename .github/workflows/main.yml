@@ -30,6 +30,10 @@ jobs:
                   path: workflow-test
                   token: ${{ secrets.GITHUB_TOKEN }}
 
+            - name: Make Docs
+              run: python ${{ env.DEVOPS_DIR }}/script.py ./lib/test.html ./lib/test.md
+              shell: sh
+
             - name: Commit repo
               run: |
                   cd workflow-test
@@ -38,7 +42,3 @@ jobs:
                   git status
                   git commit -am "Automated Docs"
                   git push
-
-            - name: Make Docs
-              run: python ${{ env.DEVOPS_DIR }}/script.py ./lib/test.html ./lib/test.md
-              shell: sh
