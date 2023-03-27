@@ -30,6 +30,15 @@ jobs:
                   path: workflow-test
                   token: ${{ secrets.GITHUB_TOKEN }}
 
+            - name: Commit repo
+              run: |
+                  cd workflow-test
+                  git config --global user.name 'JoshQuaintance'
+                  git config --global user.email 'JoshQuaintance@users.noreply.github.com'
+                  git status
+                  git commit -am "Automated Docs"
+                  git push
+
             - name: Make Docs
               run: python ${{ env.DEVOPS_DIR }}/script.py ./lib/test.html ./lib/test.md
               shell: sh
