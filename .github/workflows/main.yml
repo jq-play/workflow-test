@@ -23,7 +23,12 @@ jobs:
                   token: ${{ secrets.GITHUB_TOKEN }}
                   path: ${{ env.DEVOPS_DIR }}
 
-            - name: Make Docs
+            - name: Check-out this repo
               uses: actions/checkout@v3
+              with:
+                  path: workflow-test
+                  token: ${{ secrets.GITHUB_TOKEN }}
+
+            - name: Make Docs
               run: python ${{ env.DEVOPS_DIR }}/script.py ./lib/test.html ./lib/test.md
               shell: sh
