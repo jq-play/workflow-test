@@ -31,5 +31,5 @@ jobs:
                   token: ${{ secrets.GITHUB_TOKEN }}
 
             - name: Make Docs
-              run: python ${{ env.DEVOPS_DIR }}/script.py ../workflow-test/lib/test.html ../workflow-test/lib/test.md
+              run: python ${{ env.DEVOPS_DIR }}/script.py ./lib/test.html ../lib/test.md
               shell: sh
