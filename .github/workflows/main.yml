@@ -49,6 +49,6 @@ jobs:
                   git config --global user.email 'JoshQuaintance@users.noreply.github.com'
                   git pull
                   git add **/*.md
-                  git commit -m "Automated Docs" --amend
+                  git commit -m "Automated Docs" 
                   git status
                   git push
