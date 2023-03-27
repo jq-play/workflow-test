@@ -26,9 +26,10 @@ jobs:
             - name: Check-out this repo
               uses: actions/checkout@v3
               with:
+                  repository: jq-play/workflow-test
                   path: workflow-test
                   token: ${{ secrets.GITHUB_TOKEN }}
 
             - name: Make Docs
-              run: python ${{ env.DEVOPS_DIR }}/script.py ./lib/test.html ./lib/test.md
+              run: python ${{ env.DEVOPS_DIR }}/script.py ../lib/test.html ../lib/test.md
               shell: sh
