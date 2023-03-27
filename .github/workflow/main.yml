@@ -1,18 +1,20 @@
 name: On Push Make Docs
 
-on: push
+on:
+    push:
+        branches:
+            - master
 
 env:
     DEVOPS_DIR: devops
-
-permissions:
-  actions: read|write
-  checks: read|write
 
 jobs:
     create-docs:
         name: Create Docs
         runs-on: ubuntu-latest
+        permissions:
+            actions: write
+            checks: write
         steps:
             - name: Check-out devops repository
               uses: actions/checkout@v3
