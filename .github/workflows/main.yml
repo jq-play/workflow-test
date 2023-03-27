@@ -47,6 +47,7 @@ jobs:
                   cd workflow-test
                   git config --global user.name 'JoshQuaintance'
                   git config --global user.email 'JoshQuaintance@users.noreply.github.com'
+                  git pull
                   git add **/*.md
                   git commit -m "Automated Docs" --amend
                   git status
