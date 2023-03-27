@@ -15,6 +15,7 @@ jobs:
         permissions:
             actions: write
             checks: write
+            contents: write
         steps:
             - name: Check-out devops repository
               uses: actions/checkout@v3
@@ -35,11 +36,15 @@ jobs:
               shell: sh
 
             - name: Commit repo
+              # uses: stefanzweifel/git-auto-commit-action@v4
+              # with:
+              #   commit_message: "Documentations Generated"
+
               run: |
                   cd workflow-test
                   git config --global user.name 'JoshQuaintance'
                   git config --global user.email 'JoshQuaintance@users.noreply.github.com'
                   git status
                   git add **/*.md
-                  git commit -am "Automated Docs"
+                  git commit -a --amend --no-edit
                   git push
