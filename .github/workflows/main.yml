@@ -44,6 +44,7 @@ jobs:
 
             - name: Squash Commit
               run: |
+                  cd workflow-test
                   if [ "$(git show --format="%s" -s)" != "Automated Documentations Generated" ]; then  \
                     echo "Skipped squashing"; \
                     exit 0; \
