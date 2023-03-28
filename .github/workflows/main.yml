@@ -42,12 +42,13 @@ jobs:
                   commit_message: Automated Documentations Generated
                   file_pattern: '**/*.md'
 
-            #   run: |
-            #       cd workflow-test
-            #       git config --global user.name 'JoshQuaintance'
-            #       git config --global user.email 'JoshQuaintance@users.noreply.github.com'
-            #       git add **/*.md
-            #       git commit
-            #       git config pull.rebase false
-            #       git pull
-            #       git push
+            - name: Squash Commit
+              run: |
+                  if [ "$(git show --format="%s" -s)" != "Automated Documentations Generated" ]; then  \
+                    echo "Skipped squashing"; \
+                    exit 0; \
+                  fi 
+                  commit_msg=$(git show --format="%s" HEAD^1 -s)
+                  git reset --soft HEAD~2
+                  git commit -m $commit_msg
+                  git push
