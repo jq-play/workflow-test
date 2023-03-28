@@ -51,6 +51,6 @@ jobs:
                     exit 0; \
                   fi 
                   commit_msg=$(git show --format="%s" HEAD^1 -s)
-                  git reset --soft HEAD~2
+                  git reset --soft $(git show --format="%h" -s)
                   git commit -m $commit_msg
                   git push
