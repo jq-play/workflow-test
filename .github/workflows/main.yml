@@ -7,6 +7,7 @@ on:
 
 env:
     DEVOPS_DIR: devops
+    AUTHOR: ${{ github.actor }} <${{ github.actor }}@users.noreply.github.com>
 
 jobs:
     create-docs:
@@ -35,22 +36,38 @@ jobs:
               run: python ${{ env.DEVOPS_DIR }}/script.py ./lib/test.html ./lib/test.md
               shell: sh
 
-            - name: Commit repo
-              uses: stefanzweifel/git-auto-commit-action@v4
-              with:
-                  repository: workflow-test
-                  commit_message: Automated Documentations Generated
-                  file_pattern: '**/*.md'
+            # - name: Commit repo
+            #   uses: stefanzweifel/git-auto-commit-action@v4
+            #   with:
+            #       repository: workflow-test
+            #       commit_message: Automated Documentations Generated
+            #       file_pattern: '**/*.md'
 
-            - name: Squash Commit
+            - name: Commit Repo
               run: |
                   cd workflow-test
+
                   git pull
                   if [ "$(git show --format="%s" -s)" != "Automated Documentations Generated" ]; then  \
                     echo "Skipped squashing"; \
                     exit 0; \
                   fi 
+
+                  git config user.name 'github-actions[bot]'
+                  git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+
                   commit_msg=$(git show --format="%s" HEAD^1 -s)
                   git reset --soft $(git show --format="%h" -s)
-                  git commit -m $commit_msg
+                  git add **/*.md
+                  git commit -m $commit_msg --author="$AUTHOR"
                   git push
+
+            #   run: |
+            #       cd workflow-test
+            #       git config --global user.name 'JoshQuaintance'
+            #       git config --global user.email 'JoshQuaintance@users.noreply.github.com'
+            #       git add **/*.md
+            #       git commit
+            #       git config pull.rebase false
+            #       git pull
+            #       git push
