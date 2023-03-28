@@ -49,12 +49,6 @@ jobs:
               run: |
                   cd workflow-test
 
-                  git pull
-                  if [ "$(git show --format="%s" -s)" != "Automated Documentations Generated" ]; then  \
-                    echo "Skipped squashing"; \
-                    exit 0; \
-                  fi 
-
                   git config user.name 'github-actions[bot]'
                   git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
 
@@ -64,6 +58,11 @@ jobs:
                   git commit -m $commit_msg --author="$AUTHOR"
                   git push
 
+            #   git pull
+            #   if [ "$(git show --format="%s" -s)" != "Automated Documentations Generated" ]; then  \
+            #     echo "Skipped squashing"; \
+            #     exit 0; \
+            #   fi
             #   run: |
             #       cd workflow-test
             #       git config --global user.name 'JoshQuaintance'
