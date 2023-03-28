@@ -17,3 +17,8 @@ Just a simple paragraph
 # Testing the squashing
 # try again?
 # please
+# pleaseplease
+# maybe?
+# this shoud definitely do it
+# I'm desperate
+# I've tried so many things
