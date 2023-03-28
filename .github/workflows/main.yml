@@ -5,7 +5,7 @@ on:
         branches:
             - master
         paths:
-            - 'lib/**/*.md'
+            - 'lib/**/*.html'
 
 env:
     DEVOPS_DIR: devops
