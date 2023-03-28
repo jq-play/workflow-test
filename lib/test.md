@@ -13,3 +13,5 @@ Just a simple paragraph
 - this list will test
 - if the workflow works
 
+
+# Testing the squashing
