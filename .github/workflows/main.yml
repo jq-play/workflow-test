@@ -110,11 +110,9 @@ jobs:
                   git config user.name "$ACTOR"
                   git config user.email "$ACTOR_EMAIL"
 
-                  commit_msg=${{ github.event.head_commit.message }}
-
-                  if [[ ${{env.OUTPUT_REPO == github.repository}} ]] ; then \
+                  if [[ ${{ env.OUTPUT_REPO == github.repository }} ]] ; then \
                       git reset --soft ${{ github.sha }} ; \
                   fi 
 
-                  git commit -am "$commit_msg" --author="$AUTHOR"
+                  git commit -am "${{ github.event.head_commit.message }}" --author="$AUTHOR"
                   git push
