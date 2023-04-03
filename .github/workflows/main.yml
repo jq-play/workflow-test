@@ -50,7 +50,7 @@ jobs:
                   git status
 
             - name: 'Run Documentation Generator'
-               run: |
+              run: |
                   pwd
                   ls
                   echo " - - "
