@@ -75,6 +75,8 @@ jobs:
             - name: Commit Repo
               run: |
                   cd $OUTPUT_TARGET
+                  pwd
+                  ls
 
                   git config user.name "$ACTOR"
                   git config user.email "$ACTOR_EMAIL"
