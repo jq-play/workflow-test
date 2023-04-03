@@ -9,7 +9,7 @@
 @base <https://archive.org/services/purl/domain/modular_ontology_design_library/agentrole> .
 
 <https://archive.org/services/purl/domain/modular_ontology_design_library/agentrole> rdf:type owl:Ontology ;
-                                                                                      opla-core:hasPatternName "Agent Role Pattern testing5" ;
+                                                                                      opla-core:hasPatternName "Agent Role Pattern testing6" ;
                                                                                       opla:hasRelatedPattern "https://archive.org/services/purl/domain/modular_ontology_design_library/temporalextent"^^rdfs:Literal .
 
 #################################################################
