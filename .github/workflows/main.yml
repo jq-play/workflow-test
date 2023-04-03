@@ -1,5 +1,19 @@
 name: On Push Make Docs
 
+# This Github Action Workflow is specifically designed for
+# the KASTLE-lab repository `modular-ontology-design-library`
+# with `documentation-generator`
+# 
+# 
+#
+# Links:
+#   - modl: https://kastle-lab/modular-ontology-design-library
+#   - documentation-generator: https://kastle-lab/documentation-generator
+#
+# Actions Used:
+#   - actions/checkout: https://www.github.com/actions/checkout/tree/v3/
+#   - actions/setup-python: https://www.github.com/actions/setup-python/tree/v4/
+
 on:
     push:
         branches:
@@ -14,9 +28,22 @@ env:
 
     # The output repo can be different, but if not changed,
     # it will default to this repo
-    OUTPUT_REPO: ${{ github.repository }}
+    OUTPUT_REPO: ${{ github.repository }} # jq-play/workflow-test
+
+    # The target is where the checked out repository
+    # will be stored in the Actions VM. If the output repo
+    # is not the current repo (modular-ontology-design-library)
+    # change the value into 'output-repo'
+    OUTPUT_TARGET: ${{ github.event.repository.name }} # workflow-test
+
+    # This is the output directory that the script will output into
+    # the script will get $OUTPUT_REPO/$OUTPUT_DIR it will most likely
+    # stay to be 'documentation', but if ever need to be changed
+    # change the value below
     OUTPUT_DIR: documentation
 
+    # Preserve the original commit's actor to output a clean
+    # commit message
     ACTOR_EMAIL: ${{ github.actor }}@users.noreply.github.com
     ACTOR: ${{ github.actor }}
 
@@ -74,6 +101,10 @@ jobs:
 
             - name: Commit Repo
               run: |
+                  [[ ${{ env.OUTPUT_REPO }} = ${{ github.repository }} ]] \
+                    && OUTPUT_TARGET=${{github.event.repository.name }} || \
+                    OUTPUT_TARGET=output-repo
+                    
                   cd $OUTPUT_TARGET
                   pwd
                   ls
