@@ -3,8 +3,8 @@ name: On Push Make Docs
 # This Github Action Workflow is specifically designed for
 # the KASTLE-lab repository `modular-ontology-design-library`
 # with `documentation-generator`
-# 
-# 
+#
+#
 #
 # Links:
 #   - modl: https://kastle-lab/modular-ontology-design-library
@@ -114,7 +114,7 @@ jobs:
 
                   commit_msg=${{ github.event.head_commit.message }}
 
-                  if [[ ${{env.OUTPUT_REPO == github.repository}} ]] ; then do \
+                  if [[ ${{env.OUTPUT_REPO == github.repository}} ]] ; then \
                     git reset --soft $(git show --format="%h" -s); \
                   fi
                   git add **/*.md
