@@ -44,8 +44,8 @@ jobs:
                   token: ${{ secrets.GITHUB_TOKEN }}
 
             - name: Check-out output repo
-              uses: actions/checkout@v3
               if: env.OUTPUT_REPO == github.repository
+              uses: actions/checkout@v3
               with:
                   repository: ${{ env.OUTPUT_REPO }}
                   path: output-repo
@@ -60,11 +60,11 @@ jobs:
 
             - name: Run Documentation Generator
               run: |
-                  ONTOLOGY_DIR=$(find . -type d -name "modl")
-
                   [[ ${{ env.OUTPUT_REPO }} = ${{ github.repository }} ]] \
-                    && OUTPUT_TARGET=${{github.event.repository.name}} || \
+                    && OUTPUT_TARGET=${{github.event.repository.name }} || \
                     OUTPUT_TARGET=output-repo
+
+                  ONTOLOGY_DIR=${{ github.event.repository.name }}/modl
 
                   echo "Moving script to main"
                   pwd
@@ -73,7 +73,7 @@ jobs:
                   cp ${{ env.DEVOPS_DIR }}/documentation-generator/documentation-generator.py \
                     $ONTOLOGY_DIR/documentation-generator.py \
 
-                  python documentation-generator $ONTOLOGY_DIR $OUTPUT_TARGET/${{ env.OUTPUT_DIR }} --worfkflow
+                  python documentation-generator.py $ONTOLOGY_DIR $OUTPUT_TARGET/${{ env.OUTPUT_DIR }} --worfkflow
 
             - name: Commit Repo
               run: |
