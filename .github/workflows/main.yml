@@ -9,6 +9,7 @@ on:
 
 env:
     DEVOPS_DIR: devops
+
     ACTOR_EMAIL: ${{ github.actor }}@users.noreply.github.com
     ACTOR: ${{ github.actor }}
 
@@ -50,14 +51,11 @@ jobs:
                   git status
 
             - name: 'Run Documentation Generator'
+              # We first find the modl directory so we can use it
+
               run: |
-                  pwd
-                  ls
-                  echo " - - "
-                  cd workflow-test
-                  ls
-                  echo " - - "
-                  python ${{ env.DEVOPS_DIR }}/documentation-generator/documentation-generator.py ./modl
+                  ONTOLOGY_DIR=$(find . -type d -name "modl")
+                  python ${{ env.DEVOPS_DIR }}/documentation-generator/documentation-generator.py $ONTOLOGY_DIR
 
             # - name: Commit Repo
             #   run: |
