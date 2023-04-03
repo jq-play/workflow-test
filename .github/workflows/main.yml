@@ -70,7 +70,7 @@ jobs:
                   cp ${{ env.DEVOPS_DIR }}/documentation-generator/documentation-generator.py \
                     $ONTOLOGY_DIR/documentation-generator.py \
 
-                  python $ONTOLOGY_DIR/documentation-generator.py . $OUTPUT_TARGET/${{ env.OUTPUT_DIR }}
+                  python $ONTOLOGY_DIR/documentation-generator.py $ONTOLOGY_DIR $OUTPUT_TARGET/${{ env.OUTPUT_DIR }}
 
             - name: Commit Repo
               run: |
