@@ -118,8 +118,7 @@ jobs:
                       git reset --soft ${{ github.sha }} ; \
                   fi \
 
-                  git add **/*.md
-                  git commit -m $commit_msg --author="$AUTHOR"
+                  git commit -am $commit_msg --author="$AUTHOR"
                   git push
 
               # $(git show --format="%h" -s)
