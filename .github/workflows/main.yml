@@ -39,7 +39,15 @@ jobs:
               uses: actions/setup-python@v4
               with:
                   python-version: '3.11'
-            - run: python -m pip install -r  ${{ env.DEVOPS_DIR }}/requirements.txt
+            - run: python -m pip install -r  ${{ env.DEVOPS_DIR }}/requirements.txt\
+            - run: |
+                  ls
+                  cd workflow-test
+                  ls
+                  cd workflow-test
+                  ls
+                  pwd
+
             - run: python ${{ env.DEVOPS_DIR }}/documentation-generator/documentation-generator.py ./modl
 
             - name: Commit Repo
