@@ -106,8 +106,6 @@ jobs:
                     OUTPUT_TARGET=output-repo
                     
                   cd $OUTPUT_TARGET
-                  pwd
-                  ls
 
                   git config user.name "$ACTOR"
                   git config user.email "$ACTOR_EMAIL"
@@ -116,9 +114,7 @@ jobs:
 
                   if [[ ${{env.OUTPUT_REPO == github.repository}} ]] ; then \
                       git reset --soft ${{ github.sha }} ; \
-                  fi \
+                  fi 
 
-                  git commit -am $commit_msg --author="$AUTHOR"
+                  git commit -am "$commit_msg" --author="$AUTHOR"
                   git push
-
-              # $(git show --format="%h" -s)
