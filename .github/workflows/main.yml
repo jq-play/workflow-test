@@ -4,8 +4,8 @@ on:
     push:
         branches:
             - master
-        paths:
-            - 'modl/**/*.*'
+        # paths:
+        # - 'modl/**/*.*'
 
 env:
     # This is where the location of the script will be located
@@ -67,7 +67,9 @@ jobs:
                     OUTPUT_TARGET=output-repo
 
                   echo "Moving script to main"
-                  cp ${{env.DEVOPS_DIR }}/documentation-generator/documentation-generator.py \
+                  pwd
+                  ls
+                  cp ${{ env.DEVOPS_DIR }}/documentation-generator/documentation-generator.py \
                     $ONTOLOGY_DIR/documentation-generator.py \
 
                   python documentation-generator $ONTOLOGY_DIR $OUTPUT_TARGET/${{ env.OUTPUT_DIR }} --worfkflow
