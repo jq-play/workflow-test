@@ -87,5 +87,3 @@ jobs:
                   git add **/*.md
                   git commit -m $commit_msg --author="$AUTHOR"
                   git push
-
-              # github.event.head_commit.message
