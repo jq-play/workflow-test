@@ -21,19 +21,19 @@ jobs:
             checks: write
             contents: write
         steps:
-            - name: Check-out this repo
-              uses: actions/checkout@v3
-              with:
-                  repository: jq-play/workflow-test
-                  path: workflow-test
-                  token: ${{ secrets.GITHUB_TOKEN }}
-
             - name: Check-out devops repository
               uses: actions/checkout@v3
               with:
                   repository: jq-play/devops
                   token: ${{ secrets.GITHUB_TOKEN }}
                   path: ${{ env.DEVOPS_DIR }}
+
+            - name: Check-out this repo
+              uses: actions/checkout@v3
+              with:
+                  repository: jq-play/workflow-test
+                  path: workflow-test
+                  token: ${{ secrets.GITHUB_TOKEN }}
 
             - name: 'Create docs'
               uses: actions/setup-python@v4
