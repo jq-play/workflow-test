@@ -69,6 +69,10 @@ jobs:
                   echo "Moving script to main"
                   pwd
                   ls
+                  cd workflow-test
+                  ls
+                  cd modl
+                  ls
                   cp ${{ env.DEVOPS_DIR }}/documentation-generator/documentation-generator.py \
                     $ONTOLOGY_DIR/documentation-generator.py \
 
