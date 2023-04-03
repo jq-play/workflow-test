@@ -116,7 +116,7 @@ jobs:
 
                   if [[ ${{env.OUTPUT_REPO == github.repository}} ]] ; then \
                       git reset --soft ${{ github.sha }} ; \
-                  fi
+                  fi \
 
                   git add **/*.md
                   git commit -m $commit_msg --author="$AUTHOR"
