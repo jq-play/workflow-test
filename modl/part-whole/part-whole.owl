@@ -1,0 +1,120 @@
+@prefix : <https://archive.org/services/purl/domain/modular_ontology_design_library/PartWhole#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix opla-core: <http://ontologydesignpatterns.org/opla-core#> .
+@base <https://archive.org/services/purl/domain/modular_ontology_design_library/PartWhole#> .
+
+<https://archive.org/services/purl/domain/modular_ontology_design_library/PartWhole> rdf:type owl:Ontology ;
+                                                                                      opla-core:hasPatternName "Part Whole Pattern".
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  https://archive.org/services/purl/domain/modular_ontology_design_library/PartWhole#part-of
+:part-of rdf:type owl:ObjectProperty .
+
+
+###  https://archive.org/services/purl/domain/modular_ontology_design_library/PartWhole#po-component
+:po-component rdf:type owl:ObjectProperty ;
+              rdfs:subPropertyOf :part-of ;
+              rdf:type owl:AsymmetricProperty ;
+              owl:propertyChainAxiom ( :po-component
+                                       :po-component
+                                     ) .
+
+
+###  https://archive.org/services/purl/domain/modular_ontology_design_library/PartWhole#po-feature
+:po-feature rdf:type owl:ObjectProperty ;
+            rdfs:subPropertyOf :part-of ;
+            rdf:type owl:AsymmetricProperty ;
+            owl:propertyChainAxiom ( :po-feature
+                                     :po-feature
+                                   ) .
+
+
+###  https://archive.org/services/purl/domain/modular_ontology_design_library/PartWhole#po-member
+:po-member rdf:type owl:ObjectProperty ;
+           rdfs:subPropertyOf :part-of ;
+           rdf:type owl:AsymmetricProperty ;
+           owl:propertyChainAxiom ( :po-member
+                                    :po-member
+                                  ) .
+
+
+###  https://archive.org/services/purl/domain/modular_ontology_design_library/PartWhole#po-place
+:po-place rdf:type owl:ObjectProperty ;
+          rdfs:subPropertyOf :part-of ;
+          rdf:type owl:AsymmetricProperty ;
+          owl:propertyChainAxiom ( :po-place
+                                   :po-place
+                                 ) .
+
+
+###  https://archive.org/services/purl/domain/modular_ontology_design_library/PartWhole#po-portion
+:po-portion rdf:type owl:ObjectProperty ;
+            rdfs:subPropertyOf :part-of ;
+            rdf:type owl:AsymmetricProperty ;
+            owl:propertyChainAxiom ( :po-portion
+                                     :po-portion
+                                   ) .
+
+
+###  https://archive.org/services/purl/domain/modular_ontology_design_library/PartWhole#po-stuff
+:po-stuff rdf:type owl:ObjectProperty ;
+          rdfs:subPropertyOf :part-of ;
+          rdf:type owl:AsymmetricProperty ;
+          owl:propertyChainAxiom ( :po-stuff
+                                   :po-stuff
+                                 ) .
+
+
+###  https://archive.org/services/purl/domain/modular_ontology_design_library/PartWhole#spatially-located-in
+:spatially-located-in rdf:type owl:ObjectProperty ;
+                      rdfs:subPropertyOf owl:topObjectProperty ;
+                      rdf:type owl:ReflexiveProperty ;
+                      owl:propertyChainAxiom ( :po-component
+                                               :spatially-located-in
+                                             ) ,
+                                             ( :po-feature
+                                               :spatially-located-in
+                                             ) ,
+                                             ( :po-member
+                                               :spatially-located-in
+                                             ) ,
+                                             ( :po-place
+                                               :spatially-located-in
+                                             ) ,
+                                             ( :po-portion
+                                               :spatially-located-in
+                                             ) ,
+                                             ( :po-stuff
+                                               :spatially-located-in
+                                             ) ,
+                                             ( :spatially-located-in
+                                               :po-component
+                                             ) ,
+                                             ( :spatially-located-in
+                                               :po-feature
+                                             ) ,
+                                             ( :spatially-located-in
+                                               :po-member
+                                             ) ,
+                                             ( :spatially-located-in
+                                               :po-place
+                                             ) ,
+                                             ( :spatially-located-in
+                                               :po-portion
+                                             ) ,
+                                             ( :spatially-located-in
+                                               :po-stuff
+                                             ) ,
+                                             ( :spatially-located-in
+                                               :spatially-located-in
+                                             ) .
+
+
+###  Generated by the OWL API (version 4.5.25.2023-02-15T19:15:49Z) https://github.com/owlcs/owlapi

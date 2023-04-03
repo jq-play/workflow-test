@@ -1,0 +1,184 @@
+@prefix : <https://archive.org/services/purl/purl/modular_ontology_design_library> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix opla-core: <http://ontologydesignpatterns.org/opla-core#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@base <https://archive.org/services/purl/purl/modular_ontology_design_library> .
+
+<https://archive.org/services/purl/purl/modular_ontology_design_library> rdf:type owl:Ontology ;
+                                                                          opla-core:hasPatternName "Modular Ontology Design Library" ;
+                                                                          owl:versionIRI <https://archive.org/services/purl/purl/modular_ontology_design_library/1.0.0> .
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  https://archive.org/services/purl/purl/modular_ontology_design_library#hasMODLCategory
+:hasMODLCategory rdf:type owl:ObjectProperty .
+
+
+###  https://archive.org/services/purl/purl/modular_ontology_design_library#hasRelatedPattern
+:hasRelatedPattern rdf:type owl:ObjectProperty .
+
+
+###  https://archive.org/services/purl/purl/modular_ontology_design_library#specializationOfPattern
+:specializationOfPattern rdf:type owl:ObjectProperty .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  https://archive.org/services/purl/purl/modular_ontology_design_library#Category
+:Category rdf:type owl:Class .
+
+
+###  https://archive.org/services/purl/purl/modular_ontology_design_library#Pattern
+:Pattern rdf:type owl:Class .
+
+
+#################################################################
+#    Individuals
+#################################################################
+
+###  https://archive.org/services/purl/purl/modular_ontology_design_library#AgentRole
+:AgentRole rdf:type owl:NamedIndividual ,
+                    :Pattern ;
+           :hasMODLCategory :AgentsAndRoles ;
+           :hasRelatedPattern :PropertyReification .
+
+
+###  https://archive.org/services/purl/purl/modular_ontology_design_library#AgentsAndRoles
+:AgentsAndRoles rdf:type owl:NamedIndividual ,
+                         :Category .
+
+
+###  https://archive.org/services/purl/purl/modular_ontology_design_library#Bag
+:Bag rdf:type owl:NamedIndividual ,
+              :Pattern ;
+     :hasMODLCategory :OrganizationOfData ;
+     :hasRelatedPattern :Partonymy .
+
+
+###  https://archive.org/services/purl/purl/modular_ontology_design_library#DescriptionAndDetails
+:DescriptionAndDetails rdf:type owl:NamedIndividual ,
+                                :Category .
+
+
+###  https://archive.org/services/purl/purl/modular_ontology_design_library#Event
+:Event rdf:type owl:NamedIndividual ,
+                :Pattern ;
+       :hasMODLCategory :SpaceTimeAndMovement .
+
+
+###  https://archive.org/services/purl/purl/modular_ontology_design_library#ExplicitTyping
+:ExplicitTyping rdf:type owl:NamedIndividual ,
+                         :Pattern ;
+                :hasMODLCategory :Metapatterns .
+
+
+###  https://archive.org/services/purl/purl/modular_ontology_design_library#Identifier
+:Identifier rdf:type owl:NamedIndividual ,
+                     :Pattern ;
+            :hasMODLCategory :DescriptionAndDetails .
+
+
+###  https://archive.org/services/purl/purl/modular_ontology_design_library#Metapatterns
+:Metapatterns rdf:type owl:NamedIndividual ,
+                       :Category .
+
+
+###  https://archive.org/services/purl/purl/modular_ontology_design_library#NameStub
+:NameStub rdf:type owl:NamedIndividual ,
+                   :Pattern ;
+          :hasMODLCategory :DescriptionAndDetails ;
+          :specializationOfPattern :Stub .
+
+
+###  https://archive.org/services/purl/purl/modular_ontology_design_library#OrganizationOfData
+:OrganizationOfData rdf:type owl:NamedIndividual ,
+                             :Category .
+
+
+###  https://archive.org/services/purl/purl/modular_ontology_design_library#ParticipantRole
+:ParticipantRole rdf:type owl:NamedIndividual ,
+                          :Pattern ;
+                 :hasMODLCategory :AgentsAndRoles ;
+                 :specializationOfPattern :AgentRole .
+
+
+###  https://archive.org/services/purl/purl/modular_ontology_design_library#Partonymy
+:Partonymy rdf:type owl:NamedIndividual ,
+                    :Pattern ;
+           :hasMODLCategory :DescriptionAndDetails .
+
+
+###  https://archive.org/services/purl/purl/modular_ontology_design_library#PropertyReification
+:PropertyReification rdf:type owl:NamedIndividual ,
+                              :Pattern ;
+                     :hasMODLCategory :Metapatterns .
+
+
+###  https://archive.org/services/purl/purl/modular_ontology_design_library#Provenance
+:Provenance rdf:type owl:NamedIndividual ,
+                     :Pattern ;
+            :hasMODLCategory :DescriptionAndDetails .
+
+
+###  https://archive.org/services/purl/purl/modular_ontology_design_library#QuantitiesAndUnits
+:QuantitiesAndUnits rdf:type owl:NamedIndividual ,
+                             :Pattern ;
+                    :hasMODLCategory :DescriptionAndDetails .
+
+
+###  https://archive.org/services/purl/purl/modular_ontology_design_library#Sequence
+:Sequence rdf:type owl:NamedIndividual ,
+                   :Pattern ;
+          :hasMODLCategory :OrganizationOfData .
+
+
+###  https://archive.org/services/purl/purl/modular_ontology_design_library#SpaceTimeAndMovement
+:SpaceTimeAndMovement rdf:type owl:NamedIndividual ,
+                               :Category .
+
+
+###  https://archive.org/services/purl/purl/modular_ontology_design_library#SpatialExtent
+:SpatialExtent rdf:type owl:NamedIndividual ,
+                        :Pattern ;
+               :hasMODLCategory :SpaceTimeAndMovement .
+
+
+###  https://archive.org/services/purl/purl/modular_ontology_design_library#SpatiotemporalExtent
+:SpatiotemporalExtent rdf:type owl:NamedIndividual ,
+                               :Pattern ;
+                      :hasMODLCategory :SpaceTimeAndMovement ;
+                      :specializationOfPattern :Trajectory .
+
+
+###  https://archive.org/services/purl/purl/modular_ontology_design_library#Stub
+:Stub rdf:type owl:NamedIndividual ,
+               :Pattern ;
+      :hasMODLCategory :Metapatterns .
+
+
+###  https://archive.org/services/purl/purl/modular_ontology_design_library#TemporalExtent
+:TemporalExtent rdf:type owl:NamedIndividual ,
+                         :Pattern ;
+                :hasMODLCategory :SpaceTimeAndMovement .
+
+
+###  https://archive.org/services/purl/purl/modular_ontology_design_library#Trajectory
+:Trajectory rdf:type owl:NamedIndividual ,
+                     :Pattern ;
+            :hasMODLCategory :SpaceTimeAndMovement .
+
+
+###  https://archive.org/services/purl/purl/modular_ontology_design_library#Tree
+:Tree rdf:type owl:NamedIndividual ,
+               :Pattern ;
+      :hasMODLCategory :OrganizationOfData .
+
+
+###  Generated by the OWL API (version 4.5.25.2023-02-15T19:15:49Z) https://github.com/owlcs/owlapi

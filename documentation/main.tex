@@ -1,0 +1,30 @@
+\documentclass[11pt,oneside, letterpaper]{memoir}
+
+\input{preamble}
+\sloppy
+
+\counterwithin*{equation}{section}
+
+\begin{document}
+
+\frontmatter
+\begin{titlingpage}
+  \titleBWF
+\end{titlingpage}
+
+{\small
+\tableofcontents{}
+\newpage
+\listoffigures{}
+}
+
+\mainmatter
+
+\input{introduction}
+\input{prelims}
+\input{patterns}
+
+\bibliographystyle{abbrv}
+\bibliography{lit}
+
+\end{document}

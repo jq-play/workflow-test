@@ -1,0 +1,72 @@
+\section{Temporal Extent}
+\label{sec:Temporal}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[h!]
+\begin{center}
+\includegraphics[width=.8\textwidth]{figures/temporal}
+\end{center}
+\caption{Schema Diagram for Temporal Extent. The visual notation is explained in Chapter \ref{chap:prelims}.}
+\label{fig:Temporal}
+\end{figure}
+\subsection{Summary}
+\label{sum:Temporal}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+A \textsf{TemporalExtent} is composed of a number of \textsf{ComplexTimeIntervals}, which may be intervals of non-zero length (i.e. \textsf{TimeIntervals}) or intervals of length 0 (i.e. \textsf{PointsInSpace}).
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Axiomatization}
+\label{axs:Temporal}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{align}
+\textsf{TemporalExtent} &\sqsubset \mathord{=}n \textsf{contains.ComplexTemporalExtent} \\
+\textsf{TimeInterval} &\sqsubset \textsf{ComplexTemporalExtent} \\
+\textsf{TimeInterval} &\sqsubset \mathord{=}1 \textsf{startsFrom.PointInTime} \\
+\textsf{TimeInterval} &\sqsubset \mathord{=}1 \textsf{endsAt.PointInTime} \\
+\textsf{PointInTime} &\sqsubset \textsf{ComplexTemporalExtent} \\
+\textsf{PointInTime} &\sqsubset \mathord{=}1 \textsf{hasReferenceSystem.ReferenceSystem} \\
+\textsf{PointInTime} &\sqsubset \mathord{=}1 \textsf{hasValue.Value}
+\end{align}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Explanations}
+\label{exp:Temporal}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{enumerate}
+\item Numerical Restriction: a \textsf{TemporalExtent} \textsf{contains} exactly $n$ \textsf{ComplexTemporalExtents}. See below remarks.
+\item Subclass: every \textsf{TimeInterval} is a \textsf{ComplexTemporalExtent}.
+\item Numerical Restriction: a \textsf{TimeInterval} \textsf{startsAt} exactly 1 \textsf{PointInTime}.
+\item Numerical Restriction: a \textsf{TimeInterval} \textsf{endsAt} exactly 1 \textsf{PointInTime}.
+\item Subclass: every \textsf{PointInTime} is a \textsf{ComplexTemporalExtent}.
+\item Numerical Restriction: a \textsf{PointInTime} has exactly 1 \textsf{ReferenceSystem}.
+\item Numerical Restriction: a \textsf{PointInTime} has exactly 1 \textsf{Value}.
+\end{enumerate}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Remarks}
+\label{rem:Temporal}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+We would also like the pattern to be able to express that a \textsf{TemporalExtent} consists of exactly some \textsf{TimeIntervals} or \textsf{PointsInTime} and no other things. This is done by equipping the pattern with an axiom that must be tailored to the use-case and two rules for generating a set of assertions.
+
+\begin{equation}
+\textsf{TemporalExtent} \sqsubseteq \mathord{=}n\textsf{contains.Interior}
+\end{equation}
+where $n$ is the number of expected \textsf{ComplextimeIntverals}. Next,
+$$\textit{contains}(\textsf{temporalExtent, complexTimeInterval}_k) \text{ for } k=1,...,n$$
+and
+$$\textsf{complexTimeInterval}_i \not = \textsf{complexTimeInterval}_j \text{ for } i \not = j$$
+This allows us to express a \textsf{TemporalExtent} as a set of \textsf{ComplexTimeIntervals}.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Competency Questions}
+\label{cqs:Temporal}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{enumerate}[CQ1.]
+\item Which dates did World War II span?
+\item What era was the ice age?
+\end{enumerate}
+
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% End Section
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

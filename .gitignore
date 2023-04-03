@@ -1,0 +1,10 @@
+*.log
+*.aux
+*.bibl
+*.bbl
+*.blg
+*.out
+*.synctex*
+*.toc
+*.lof
+Documentation/main.pdf
