@@ -111,7 +111,7 @@ jobs:
                   git config user.email "$ACTOR_EMAIL"
 
                   if [[ ${{ env.OUTPUT_REPO == github.repository }} ]] ; then \
-                      git reset --soft HEAD~2 ; \
+                      git reset --soft ${{ github.sha }}~2 ; \
                   fi 
 
                   git add --all
