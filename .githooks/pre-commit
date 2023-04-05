@@ -1,0 +1,35 @@
+#!/env/bash
+
+CHANGED_FILES=$(git diff --stat --name-only origin/master)
+echo $CHANGED_FILES
+
+get_pattern_files() {
+	pattern=$(echo "$*" | sed "s/ /\$\\\|/g")
+	echo "$CHANGED_FILES" | { grep "$pattern$" || true; }
+}
+
+get_documentation_generator() {
+	git clone --depth=1 --branch=master https://kastle-lab/documentation-generator documentation-generator
+	SCRIPT_PATH=$(find -type f -name "documentation-generator.py")
+	cp $SCRIPT_PATH modl/documentation-generator.py
+}
+
+cleanup() {
+	rm -rf documentation-generator
+	rm modl/documentation-generator.py
+}
+
+OWL_FILES=$(get_pattern_files .owl)
+
+if [[ -n "$OWL_FILES" ]]; then
+	get_documentation_generator
+
+	cd modl
+	python documentation-generator.py
+else 
+	echo "No changes done to owl file found, skipping pre-commit"
+	exit 0
+fi
+
+git add documentation/*.*
+git commit --amend --no-edit
