@@ -18,8 +18,8 @@ on:
     push:
         branches:
             - master
-        # paths:
-        # - 'modl/**/*.*'
+        paths:
+            - 'modl/**/*.*'
 
 env:
     # This is where the location of the script will be located
@@ -87,7 +87,7 @@ jobs:
 
             - name: Run Documentation Generator
               run: |
-                  [[ ${{ env.OUTPUT_REPO }} = ${{ github.repository }} ]] \
+                  [[ ${{ env.OUTPUT_REPO == github.repository }} ]] \
                     && OUTPUT_TARGET=${{github.event.repository.name }} || \
                     OUTPUT_TARGET=output-repo
 
@@ -101,7 +101,7 @@ jobs:
 
             - name: Commit Repo
               run: |
-                  [[ ${{ env.OUTPUT_REPO }} = ${{ github.repository }} ]] \
+                  [[ ${{ env.OUTPUT_REPO == github.repository }} ]] \
                     && OUTPUT_TARGET=${{github.event.repository.name }} || \
                     OUTPUT_TARGET=output-repo
                     
