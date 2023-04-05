@@ -85,6 +85,9 @@ jobs:
             - name: Install Dependencies
               run: python -m pip install -r  ${{ env.DEVOPS_DIR }}/requirements.txt\
 
+            - name: Reset commits
+              run: |
+
             - name: Run Documentation Generator
               run: |
                   [[ ${{ env.OUTPUT_REPO == github.repository }} ]] \
@@ -110,10 +113,15 @@ jobs:
                   git config user.name "$ACTOR"
                   git config user.email "$ACTOR_EMAIL"
 
-                  if [[ ${{ env.OUTPUT_REPO == github.repository }} ]] ; then \
-                      git reset --soft ${{ github.sha }}~2 ; \
-                  fi 
-
                   git add --all
+                  git commit -m "Generated Documentation"
+                  git push
+
+                  git status
+
+                  if [[ ${{ env.OUTPUT_REPO == github.repository }} ]] ; then \
+                    git reset --soft ${{ github.sha }}~2 ; \
+                  fi
+
                   git commit -m "${{ github.event.head_commit.message }}" --author="$AUTHOR"
                   git push
