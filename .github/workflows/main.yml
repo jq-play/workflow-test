@@ -123,7 +123,7 @@ jobs:
                     git reset --soft ${{ github.sha }} ; \
                   fi
 
-                  git commit --amend
+                  git commit --amend --no-edit
                   git push
 
               # git commit -m "${{ github.event.head_commit.message }}" --author="$AUTHOR"
