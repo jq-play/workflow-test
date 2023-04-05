@@ -120,8 +120,10 @@ jobs:
                   git status
 
                   if [[ ${{ env.OUTPUT_REPO == github.repository }} ]] ; then \
-                    git reset --soft ${{ github.sha }}~2 ; \
+                    git reset --soft ${{ github.sha }} ; \
                   fi
 
-                  git commit -m "${{ github.event.head_commit.message }}" --author="$AUTHOR"
+                  git commit --amend
                   git push
+
+              # git commit -m "${{ github.event.head_commit.message }}" --author="$AUTHOR"
