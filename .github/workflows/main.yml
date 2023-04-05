@@ -114,5 +114,6 @@ jobs:
                       git reset --soft ${{ github.sha }} ; \
                   fi 
 
-                  git commit -am "${{ github.event.head_commit.message }}" --author="$AUTHOR"
+                  git add --all
+                  git commit -m "${{ github.event.head_commit.message }}" --author="$AUTHOR"
                   git push
