@@ -26,7 +26,7 @@ if [[ -n "$OWL_FILES" ]]; then
 	get_documentation_generator
 
 	cd modl
-	python documentation-generator.py
+	python documentation-generator.py . ../documentation
 	cleanup
 else 
 	echo "No changes done to owl file found, skipping pre-commit"
