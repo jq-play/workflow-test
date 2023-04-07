@@ -10,7 +10,7 @@ get_pattern_files() {
 }
 
 get_documentation_generator() {
-	git clone --depth=1 --branch=master $CHANGED_FILES documentation-generator
+	git clone --depth=1 --branch=master $DOC_GENERATOR_REPO documentation-generator
 	SCRIPT_PATH=$(find -type f -name "documentation-generator.py")
 	yes | cp $SCRIPT_PATH modl/documentation-generator.py
 }
