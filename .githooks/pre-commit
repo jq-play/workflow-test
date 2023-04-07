@@ -1,7 +1,5 @@
 #!/env/bash
 
-# CHANGED_FILES=$(git diff --stat --name-only origin/master)
-# UNTRACKED_FILES=$(git ls-files -o --exclude-standard)
 MODIFIED_FILES=$(git status --porcelain | awk '{print $2}')
 DOC_GENERATOR_REPO=https://github.com/jq-play/devops
 
