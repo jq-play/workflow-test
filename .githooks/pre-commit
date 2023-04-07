@@ -15,23 +15,23 @@ get_documentation_generator() {
 	yes | cp $SCRIPT_PATH modl/documentation-generator.py
 }
 
-cleanup() {
-	rm -rf documentation-generator
-	rm modl/documentation-generator.py
-}
-
 OWL_FILES=$(get_pattern_files .owl)
 
 if [[ -n "$OWL_FILES" ]]; then
 	get_documentation_generator
 
 	cd modl
-	python documentation-generator.py . ../documentation
-	cleanup
+	python documentation-generator.py ./ ../documentation
+
+	rm -rf documentation-generator
+	rm modl/documentation-generator.py
 else 
 	echo "No changes done to owl file found, skipping pre-commit"
 	exit 0
 fi
 
-git add documentation/*.*
-git commit --amend --no-edit
+git add **/*.*
+
+# `--no-verify`` will ensure this hook won't trigger itself
+# and run infinitely
+git commit --amend --no-edit --no-verify
