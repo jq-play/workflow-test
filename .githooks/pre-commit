@@ -1,12 +1,13 @@
 #!/env/bash
 
-CHANGED_FILES=$(git diff --stat --name-only origin/master)
-UNTRACKED_FILES=$(git ls-files -o --exclude-standard)
+# CHANGED_FILES=$(git diff --stat --name-only origin/master)
+# UNTRACKED_FILES=$(git ls-files -o --exclude-standard)
+MODIFIED_FILES=$(git status --porcelain | awk '{print $2}')
 DOC_GENERATOR_REPO=https://github.com/jq-play/devops
 
 get_pattern_files() {
 	pattern=$(echo "$*" | sed "s/ /\$\\\|/g")
-	echo "$CHANGED_FILES \n$UNTRACKED_FILES" | { grep "$pattern$" || true; }
+	echo "$MODIFIED_FILES" | { grep "$pattern$" || true; }
 }
 
 get_documentation_generator() {
