@@ -23,6 +23,7 @@ if [[ -n "$OWL_FILES" ]]; then
 	cd modl
 	python documentation-generator.py ./ ../documentation
 
+	cd ..
 	rm -rf documentation-generator
 	rm modl/documentation-generator.py
 else 
@@ -34,4 +35,4 @@ git add **/*.*
 
 # `--no-verify`` will ensure this hook won't trigger itself
 # and run infinitely
-git commit --amend --no-edit --no-verify
+# git commit --amend --no-edit --no-verify
