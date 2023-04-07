@@ -1,38 +1,49 @@
 #!/env/bash
 
 CHANGED_FILES=$(git diff --stat --name-only origin/master)
+UNTRACKED_FILES=$(git ls-files -o --exclude-standard)
 DOC_GENERATOR_REPO=https://github.com/jq-play/devops
-echo $CHANGED_FILES
 
 get_pattern_files() {
 	pattern=$(echo "$*" | sed "s/ /\$\\\|/g")
-	echo "$CHANGED_FILES" | { grep "$pattern$" || true; }
+	echo "$CHANGED_FILES \n$UNTRACKED_FILES" | { grep "$pattern$" || true; }
 }
 
 get_documentation_generator() {
+	# Clone the documentation-generator
+	# and find it
 	git clone --depth=1 --branch=master $DOC_GENERATOR_REPO documentation-generator
 	SCRIPT_PATH=$(find -type f -name "documentation-generator.py")
+
+	# Move the script into the modl directory
+	# If somehow the documentation-generator.py already exists
+	# inside of modl, it'll use the `yes` to basically force copy it
 	yes | cp $SCRIPT_PATH modl/documentation-generator.py
 }
 
+# This will act as our filter to check if any of the owl files
+# is part of the modified or untracked files
 OWL_FILES=$(get_pattern_files .owl)
 
 if [[ -n "$OWL_FILES" ]]; then
 	get_documentation_generator
 
+	# Go into the directory and execute the script
 	cd modl
 	python documentation-generator.py ./ ../documentation
 
+	# Go out and cleanup
 	cd ..
 	rm -rf documentation-generator
 	rm modl/documentation-generator.py
+
 else 
 	echo "No changes done to owl file found, skipping pre-commit"
 	exit 0
 fi
 
+# Add the new files to the commit
 git add **/*.*
 
-# `--no-verify`` will ensure this hook won't trigger itself
-# and run infinitely
-# git commit --amend --no-edit --no-verify
+# Exit with code 0 which will continue the commit
+exit 0
